@@ -1,0 +1,251 @@
+15:25:42 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:25:42 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:25:42 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:25:48 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:25:48 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:25:48 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:25:55 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:25:55 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:25:55 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:26:03 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:26:03 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:26:03 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:26:25 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:26:25 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:26:25 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:27:05 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:28:09 | INFO    | dental.chat | POST /api/chat | session=diag-1 | msg='Hello, what are your clinic timings?'
+15:28:09 | INFO    | dental.agent | run_agent | intent=faq | history_len=0 | msg='Hello, what are your clinic timings?'
+15:28:09 | INFO    | dental.agent | Building agent | model=gemini-2.5-flash-lite | tools=6
+15:28:14 | INFO    | dental.agent | Agent built successfully.
+15:28:16 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 1.85 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:28:24 | INFO    | dental.rag | RAG search | query='clinic timings' | chunks=13
+15:28:32 | INFO    | dental.agent | agent called tools: ['search_clinic_knowledge']
+15:28:32 | INFO    | dental.agent | tool result | search_clinic_knowledge -> '### Holidays & Closures\nClosed on Independence Day (Aug 15) and Diwali (Nov 8-9). Otherwise open as per regular timings.\n\n### Doctor Availability\nDr. Priya Shar'
+15:28:32 | INFO    | dental.agent | run_agent OK in 23.3s | reply='Our clinic is open from Monday to Saturday, 9:00 AM to 7:00 PM, and on Sundays from 10:00 AM to 2:00 PM. We are closed on Independence Day (Aug 15) and Diwali ('
+15:30:49 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:31:07 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:31:07 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:31:07 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:32:23 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:32:23 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:32:23 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:33:48 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:33:51 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:33:51 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash-lite | embed=models/gemini-embedding-001 | api_key_set=True
+15:33:51 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:34:34 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Clinic Timings'
+15:34:34 | INFO    | dental.agent | run_agent | intent=faq | history_len=20 | msg='Clinic Timings'
+15:34:34 | INFO    | dental.agent | Building agent | model=gemini-2.5-flash-lite | tools=6
+15:34:35 | INFO    | dental.agent | Agent built successfully.
+15:34:37 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 1.74 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:34:40 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 2.98 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:34:45 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 4.72 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:34:51 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 8.92 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:35:01 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 16.8 seconds as it raised ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}.
+15:35:19 | ERROR   | dental.agent | Agent failed after 45.7s: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+Traceback (most recent call last):
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\agent\dental_agent.py", line 94, in run_agent
+    result = await agent.ainvoke({"messages": _to_lc_messages(history, message)})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\pregel\main.py", line 4105, in ainvoke
+    async for chunk in self.astream(
+    ...<30 lines>...
+            chunks.append(chunk)
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\pregel\main.py", line 3455, in astream
+    async for _ in runner.atick(
+    ...<16 lines>...
+            yield o
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\pregel\_runner.py", line 396, in atick
+    await arun_with_retry(
+    ...<15 lines>...
+    )
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\pregel\_retry.py", line 744, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\_internal\_runnable.py", line 733, in ainvoke
+    input = await asyncio.create_task(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        step.ainvoke(input, config, **kwargs), context=context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langgraph\_internal\_runnable.py", line 501, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain\agents\factory.py", line 1495, in amodel_node
+    model_response = await _execute_model_async(request)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain\agents\factory.py", line 1467, in _execute_model_async
+    output = await model_.ainvoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_core\runnables\base.py", line 6017, in ainvoke
+    return await self.bound.ainvoke(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 499, in ainvoke
+    llm_result = await self.agenerate_prompt(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1860, in agenerate_prompt
+    return await self.agenerate(
+           ^^^^^^^^^^^^^^^^^^^^^
+        prompt_messages, stop=stop, callbacks=callbacks, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1818, in agenerate
+    raise exceptions[0]
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 2151, in _agenerate_with_cache
+    result = await self._agenerate(
+             ^^^^^^^^^^^^^^^^^^^^^^
+        messages, stop=stop, run_manager=run_manager, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\langchain_google_genai\chat_models.py", line 3343, in _agenerate
+    await self.client.aio.models.generate_content(
+        **request,
+    )
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\models.py", line 8679, in generate_content
+    return await self._generate_content(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        model=model, contents=contents, config=final_parsed_config
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\models.py", line 7153, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        'post', path, request_dict, http_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\_api_client.py", line 1664, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        http_request=http_request, http_options=http_options, stream=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\_api_client.py", line 1596, in _async_request
+    return await retry(self._async_request_once, http_request, stream)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 112, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 157, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\_utils.py", line 111, in inner
+    return call(*args, **kwargs)
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 116, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\_api_client.py", line 1528, in _async_request_once
+    await errors.APIError.raise_for_async_response(response)
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\errors.py", line 247, in raise_for_async_response
+    await cls.raise_error_async(status_code, response_json, response)
+  File "C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\myenv\Lib\site-packages\google\genai\errors.py", line 271, in raise_error_async
+    raise ServerError(status_code, response_json, response)
+google.genai.errors.ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+During task with name 'model' and id '999b44ac-9983-4dd9-6056-4cda1c1e12a3'
+15:35:19 | WARNING | dental.agent | ROOT CAUSE: Gemini model 'gemini-2.5-flash-lite' temporarily overloaded (503).
+15:36:09 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:36:13 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:36:13 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash | embed=models/gemini-embedding-001 | api_key_set=True
+15:36:13 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:36:20 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Clinic Timings'
+15:36:20 | INFO    | dental.agent | run_agent | intent=faq | history_len=22 | msg='Clinic Timings'
+15:36:20 | INFO    | dental.agent | Building agent | model=gemini-2.5-flash | tools=6
+15:36:21 | INFO    | dental.agent | Agent built successfully.
+15:36:23 | INFO    | dental.rag | RAG search | query='Clinic Timings' | chunks=13
+15:36:27 | INFO    | dental.agent | agent called tools: ['search_clinic_knowledge']
+15:36:27 | INFO    | dental.agent | tool result | search_clinic_knowledge -> '### Holidays & Closures\nClosed on Independence Day (Aug 15) and Diwali (Nov 8-9). Otherwise open as per regular timings.\n\n### Doctor Availability\nDr. Priya Shar'
+15:36:27 | INFO    | dental.agent | run_agent OK in 7.2s | reply='Our clinic, SmileCare Dental Hospital, is open at the following times:\n\n*   **Monday to Saturday:** 9:00 AM - 7:00 PM\n*   **Sunday:** 10:00 AM - 2:00 PM\n\nWe are'
+15:36:50 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='I want to book an appointment'
+15:36:50 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=24 | msg='I want to book an appointment'
+15:36:52 | INFO    | dental.agent | run_agent OK in 1.8s | reply='Certainly! I can help you book an appointment at SmileCare Dental Hospital.\n\nTo get started, could you please tell me your full name and phone number?'
+15:37:01 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Shiva Chary'
+15:37:01 | INFO    | dental.agent | run_agent | intent=None | history_len=26 | msg='Shiva Chary'
+15:37:02 | INFO    | dental.agent | run_agent OK in 1.6s | reply='Thank you, Shiva. And what is your phone number, please?'
+15:37:08 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='9640551246'
+15:37:08 | INFO    | dental.agent | run_agent | intent=None | history_len=28 | msg='9640551246'
+15:37:10 | INFO    | dental.agent | run_agent OK in 2.2s | reply='Great, Shiva Chary. Your phone number is 9640551246.\n\nNow, could you please tell me:\n1.  Is there a specific doctor you would like to see?\n2.  What service do y'
+15:37:53 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg="I want to see priya, it's for general check up and i'm loooking for some slot on this weekend"
+15:37:53 | INFO    | dental.agent | run_agent | intent=None | history_len=30 | msg="I want to see priya, it's for general check up and i'm loooking for some slot on this weekend"
+15:38:01 | INFO    | dental.agent | agent called tools: ['check_availability', 'check_availability']
+15:38:01 | INFO    | dental.agent | tool result | check_availability -> '["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",'
+15:38:01 | INFO    | dental.agent | tool result | check_availability -> '["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",'
+15:38:01 | INFO    | dental.agent | run_agent OK in 8.3s | reply="Thank you for letting me know, Shiva. You'd like to see Dr. Priya Sharma for a general check-up this weekend.\n\nI've checked Dr. Priya Sharma's schedule, and she"
+15:38:44 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='book me for rahul on this saturday at 11 am'
+15:38:44 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=32 | msg='book me for rahul on this saturday at 11 am'
+15:38:50 | INFO    | dental.agent | agent called tools: ['check_availability']
+15:38:50 | INFO    | dental.agent | tool result | check_availability -> '["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",'
+15:38:50 | INFO    | dental.agent | agent called tools: ['book_appointment']
+15:38:50 | INFO    | dental.agent | tool result | book_appointment -> '{"success": true, "appointment_id": "6a3e4fb1879a0df5aa0bc503", "message": "Appointment confirmed for Shiva Chary with Dr. Rahul Mehta for general check-up on 2'
+15:38:50 | INFO    | dental.agent | run_agent OK in 6.6s | reply='Excellent! Your appointment for a general check-up with Dr. Rahul Mehta has been successfully booked for **Saturday, June 27th, 2026, at 11:00 AM**.\n\nYour appoi'
+15:39:29 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Book Appointment'
+15:39:29 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=34 | msg='Book Appointment'
+15:39:30 | INFO    | dental.agent | run_agent OK in 1.5s | reply='Certainly! I can help you book another appointment.\n\nCould you please tell me the full name and phone number of the patient for this new appointment?'
+15:39:40 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Book Appointment'
+15:39:40 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=36 | msg='Book Appointment'
+15:39:41 | INFO    | dental.agent | run_agent OK in 1.6s | reply='I can help you book another appointment.\n\nTo get started, could you please tell me the full name and phone number of the patient for this new appointment?'
+15:39:59 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Mahalakshmi, 9849128942'
+15:39:59 | INFO    | dental.agent | run_agent | intent=None | history_len=38 | msg='Mahalakshmi, 9849128942'
+15:40:01 | INFO    | dental.agent | run_agent OK in 1.9s | reply='Thank you, Mahalakshmi. Your phone number is 9849128942.\n\nNow, could you please tell me:\n1.  Is there a specific doctor you would like to see?\n2.  What service '
+15:40:21 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Rahul for general checkup on this saturday 11 am'
+15:40:21 | INFO    | dental.agent | run_agent | intent=None | history_len=40 | msg='Rahul for general checkup on this saturday 11 am'
+15:40:26 | INFO    | dental.agent | agent called tools: ['check_availability']
+15:40:26 | INFO    | dental.agent | tool result | check_availability -> '["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", '
+15:40:26 | INFO    | dental.agent | run_agent OK in 5.1s | reply="I see that you'd like to book with Dr. Rahul Mehta for a general check-up this Saturday, June 27th, at 11:00 AM.\n\nUnfortunately, the 11:00 AM slot with Dr. Rahu"
+15:40:46 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='yea book me the earlist one'
+15:40:46 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=42 | msg='yea book me the earlist one'
+15:40:51 | INFO    | dental.agent | agent called tools: ['book_appointment']
+15:40:51 | INFO    | dental.agent | tool result | book_appointment -> '{"success": true, "appointment_id": "6a3e5029879a0df5aa0bc504", "message": "Appointment confirmed for Mahalakshmi with Dr. Rahul Mehta for general check-up on 2'
+15:40:51 | INFO    | dental.agent | run_agent OK in 4.5s | reply='Excellent, Mahalakshmi! Your appointment for a general check-up with Dr. Rahul Mehta has been successfully booked for **Saturday, June 27th, 2026, at 10:30 AM**'
+15:50:39 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:50:43 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:50:43 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash | embed=models/gemini-embedding-001 | api_key_set=True
+15:50:43 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:51:59 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:52:02 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:52:02 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash | embed=models/gemini-embedding-001 | api_key_set=True
+15:52:02 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:53:37 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:53:42 | INFO    | dental | Logging configured. Writing to C:\Users\shiva\OneDrive\Documents\claude\AI_RAG_AGENT\dental-ai-agent\backend\app.log
+15:53:42 | INFO    | dental.startup | Starting up | db=dental_ai | llm=gemini-2.5-flash | embed=models/gemini-embedding-001 | api_key_set=True
+15:53:42 | INFO    | dental.startup | FAISS index built with 13 knowledge chunks.
+15:53:53 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='Cancel Appointment'
+15:53:53 | INFO    | dental.agent | run_agent | intent=book_appointment | history_len=44 | msg='Cancel Appointment'
+15:53:53 | INFO    | dental.agent | Building agent | model=gemini-2.5-flash | tools=6
+15:53:55 | INFO    | dental.agent | Agent built successfully.
+15:53:57 | INFO    | dental.agent | run_agent OK in 3.3s | reply="I can help you with that. To cancel an appointment, I'll need either the appointment ID or the patient's phone number. Could you please provide one of those?"
+15:54:16 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='9640441246'
+15:54:16 | INFO    | dental.agent | run_agent | intent=None | history_len=46 | msg='9640441246'
+15:54:19 | INFO    | dental.agent | agent called tools: ['cancel_appointment']
+15:54:19 | INFO    | dental.agent | tool result | cancel_appointment -> '{"success": false, "message": "No matching appointment found."}'
+15:54:19 | INFO    | dental.agent | run_agent OK in 3.3s | reply="I'm sorry, but I couldn't find any appointments associated with the phone number 9640441246.\n\nCould you please double-check the phone number or provide the appo"
+15:54:29 | INFO    | dental.chat | POST /api/chat | session=46c1eb63-0797-4223-a4d5-88c0e7511556 | msg='9640551246'
+15:54:29 | INFO    | dental.agent | run_agent | intent=None | history_len=48 | msg='9640551246'
+15:54:29 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 1.42 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 30.219732529s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}.
+15:54:31 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 2.89 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 28.534781059s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}.
+15:54:37 | INFO    | google_genai._api_client | Retrying google.genai._api_client.BaseApiClient._async_request_once in 1.62 seconds as it raised ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 22.578494607s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '22s'}]}}.
+15:54:41 | INFO    | dental.agent | agent called tools: ['get_patient_appointments']
+15:54:41 | INFO    | dental.agent | tool result | get_patient_appointments -> '[{"appointment_id": "6a3e4fb1879a0df5aa0bc503", "doctor_name": "Dr. Rahul Mehta", "service_type": "general check-up", "appointment_date": "2026-06-27", "time_sl'
+15:54:41 | INFO    | dental.agent | run_agent OK in 11.6s | reply='Okay, I found one appointment associated with the phone number 9640551246:\n\n*   **Patient Name:** Shiva Chary\n*   **Doctor:** Dr. Rahul Mehta\n*   **Service:** G'

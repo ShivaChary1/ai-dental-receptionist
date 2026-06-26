@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+motor
+pymongo
+langchain
+langchain-google-genai
+langchain-community
+google-generativeai
+python-dotenv
+pydantic
+pydantic-settings
+faiss-cpu
+numpy
