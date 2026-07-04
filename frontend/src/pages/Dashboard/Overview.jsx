@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { CalendarDays, CalendarClock, CalendarX2, MessagesSquare } from "lucide-react";
 import api from "../../api/axios.js";
 import StatusBadge from "../../components/StatusBadge.jsx";
-
-function StatCard({ label, value, accent }) {
-  return (
-    <div className="bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
-      <div className="text-sm text-slate-500">{label}</div>
-      <div className={`text-3xl font-bold mt-1 ${accent}`}>{value}</div>
-    </div>
-  );
-}
+import Stat from "../../components/ui/Stat.jsx";
+import Badge from "../../components/ui/Badge.jsx";
+import { Card, CardHeader, CardTitle, CardContent } from "../../components/ui/Card.jsx";
+import { SkeletonStat, SkeletonRow } from "../../components/ui/Skeleton.jsx";
+import { staggerContainer, listItem } from "../../lib/motion.js";
 
 export default function Overview() {
   const [stats, setStats] = useState(null);
@@ -18,74 +16,105 @@ export default function Overview() {
     api.get("/api/dashboard/stats").then(({ data }) => setStats(data)).catch(() => {});
   }, []);
 
-  if (!stats) return <div className="text-slate-400">Loading…</div>;
+  if (!stats) {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+          <SkeletonStat /><SkeletonStat /><SkeletonStat /><SkeletonStat />
+        </div>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {[0, 1].map((i) => (
+            <div key={i} className="rounded-xl border border-border bg-card p-5 shadow-sm">
+              <SkeletonRow /><SkeletonRow /><SkeletonRow />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <StatCard label="Total Appointments" value={stats.total_appointments} accent="text-primary" />
-        <StatCard label="Today's Appointments" value={stats.todays_appointments} accent="text-green-600" />
-        <StatCard label="This Week's Cancellations" value={stats.cancellations_this_week} accent="text-red-500" />
-        <StatCard label="Active Conversations Today" value={stats.active_conversations_today} accent="text-yellow-600" />
+    <motion.div variants={staggerContainer} initial="hidden" animate="show" className="space-y-6">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <Stat label="Total appointments" value={stats.total_appointments} icon={CalendarDays} />
+        <Stat label="Today's appointments" value={stats.todays_appointments} icon={CalendarClock} />
+        <Stat label="Cancellations (7d)" value={stats.cancellations_this_week} icon={CalendarX2} />
+        <Stat label="Active conversations today" value={stats.active_conversations_today} icon={MessagesSquare} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent appointments */}
-        <div className="bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
-          <h2 className="font-semibold text-slate-800 mb-3">Recent Appointments</h2>
-          <table className="w-full text-sm">
-            <thead className="text-left text-slate-400 border-b">
-              <tr>
-                <th className="py-2">Patient</th>
-                <th>Doctor</th>
-                <th>Service</th>
-                <th>Date/Time</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stats.recent_appointments.map((a) => (
-                <tr key={a.id} className="border-b border-slate-50">
-                  <td className="py-2 font-medium text-slate-700">{a.patient_name}</td>
-                  <td className="text-slate-600">{a.doctor_name}</td>
-                  <td className="text-slate-600">{a.service_type}</td>
-                  <td className="text-slate-600 whitespace-nowrap">{a.appointment_date} {a.time_slot}</td>
-                  <td><StatusBadge status={a.status} /></td>
-                </tr>
-              ))}
-              {stats.recent_appointments.length === 0 && (
-                <tr><td colSpan={5} className="py-4 text-center text-slate-400">No appointments yet.</td></tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Recent conversations */}
-        <div className="bg-white rounded-xl border border-slate-100 p-5 shadow-sm">
-          <h2 className="font-semibold text-slate-800 mb-3">Recent Conversations</h2>
-          <ul className="space-y-3">
-            {stats.recent_conversations.map((c) => (
-              <li key={c.session_id} className="border-b border-slate-50 pb-2">
-                <div className="flex justify-between">
-                  <span className="font-medium text-slate-700">{c.patient_name}</span>
-                  <span className="text-xs text-slate-400">
-                    {c.last_active ? new Date(c.last_active).toLocaleString() : ""}
-                  </span>
-                </div>
-                <p className="text-sm text-slate-500 truncate">{c.last_message}</p>
-                <div className="flex gap-1 mt-1 flex-wrap">
-                  {c.intents.map((t) => (
-                    <span key={t} className="text-[11px] bg-primary/10 text-primary px-2 py-0.5 rounded-full">{t}</span>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <motion.div variants={listItem}>
+          <Card className="h-full">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Recent appointments</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <table className="w-full text-sm">
+                <thead className="border-b border-border text-left text-xs text-muted-foreground">
+                  <tr>
+                    <th className="py-2 font-medium">Patient</th>
+                    <th className="font-medium">Doctor</th>
+                    <th className="font-medium">Service</th>
+                    <th className="font-medium">Date / time</th>
+                    <th className="font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.recent_appointments.map((a) => (
+                    <tr key={a.id} className="border-b border-border/50 last:border-0">
+                      <td className="py-2 font-medium text-foreground">{a.patient_name}</td>
+                      <td className="text-foreground">{a.doctor_name}</td>
+                      <td className="text-foreground">{a.service_type}</td>
+                      <td className="tabular whitespace-nowrap text-foreground">
+                        {a.appointment_date} {a.time_slot}
+                      </td>
+                      <td><StatusBadge status={a.status} /></td>
+                    </tr>
                   ))}
-                </div>
-              </li>
-            ))}
-            {stats.recent_conversations.length === 0 && (
-              <li className="text-slate-400 text-sm">No conversations yet.</li>
-            )}
-          </ul>
-        </div>
+                  {stats.recent_appointments.length === 0 && (
+                    <tr>
+                      <td colSpan={5} className="py-4 text-center text-muted-foreground">
+                        No appointments yet.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div variants={listItem}>
+          <Card className="h-full">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm">Recent conversations</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                {stats.recent_conversations.map((c) => (
+                  <li key={c.session_id} className="border-b border-border/50 pb-2 last:border-0">
+                    <div className="flex justify-between gap-2">
+                      <span className="truncate text-sm font-medium text-foreground">{c.patient_name}</span>
+                      <span className="shrink-0 text-xs text-muted-foreground">
+                        {c.last_active ? new Date(c.last_active).toLocaleString() : ""}
+                      </span>
+                    </div>
+                    <p className="truncate text-sm text-muted-foreground">{c.last_message}</p>
+                    <div className="mt-1 flex flex-wrap gap-1">
+                      {c.intents.map((t) => (
+                        <Badge key={t} tone="primary">{t}</Badge>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+                {stats.recent_conversations.length === 0 && (
+                  <li className="text-sm text-muted-foreground">No conversations yet.</li>
+                )}
+              </ul>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

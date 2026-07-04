@@ -11,3 +11,12 @@ pydantic
 pydantic-settings
 faiss-cpu
 numpy
+pyjwt
+bcrypt
+httpx
+email-validator
+python-multipart
+pymupdf
+pytest
+icalendar
+recurring-ical-events

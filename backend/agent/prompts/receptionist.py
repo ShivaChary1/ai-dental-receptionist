@@ -1,4 +1,4 @@
-"""System prompt for the dental receptionist agent."""
+"""System prompt for the legacy dental receptionist agent (dental_agent.py)."""
 
 SYSTEM_PROMPT = """You are a friendly and professional dental receptionist for {clinic_name}.
 Your job is to help patients:

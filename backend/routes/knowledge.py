@@ -2,15 +2,18 @@
 from datetime import datetime
 
 from bson import ObjectId
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from agent import rag
 from agent.seeds import DEFAULT_KNOWLEDGE
+from auth.deps import require_admin
 from database import get_db
 from models.appointment import serialize
 from models.knowledge import KnowledgeIn
 
-router = APIRouter(prefix="/api/knowledge", tags=["knowledge"])
+router = APIRouter(
+    prefix="/api/knowledge", tags=["knowledge"], dependencies=[Depends(require_admin)]
+)
 
 
 @router.get("")
@@ -84,3 +87,16 @@ async def seed_knowledge() -> dict:
 async def reindex_knowledge() -> dict:
     count = await rag.rebuild_index()
     return {"success": True, "indexed_chunks": count}
+
+
+@router.post("/ingest")
+async def ingest_corpus(payload: dict) -> dict:
+    """Ingest a server-side directory (with manifest.json) into the RAG corpus."""
+    directory = (payload or {}).get("directory")
+    if not directory:
+        raise HTTPException(400, "Provide {'directory': <path with manifest.json>}.")
+    from services.ingestion import ingest_directory
+    try:
+        return {"success": True, **(await ingest_directory(directory))}
+    except FileNotFoundError as exc:
+        raise HTTPException(400, str(exc))

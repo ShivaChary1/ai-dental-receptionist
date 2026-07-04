@@ -2,6 +2,111 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────────
+   IVORY — token foundation. Warm clinical teal on a warm-ivory neutral ramp.
+   Light AND dark authored separately (dark = layered charcoal-green surfaces,
+   NOT inverted). Variables hold bare OKLCH channels so Tailwind opacity
+   modifiers work: oklch(var(--primary) / <alpha>).  Tuned for AA contrast.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --radius: 0.75rem; /* 12px base */
+
+  /* Neutrals — light (warm ivory, never pure white) */
+  --background: 0.986 0.003 95;
+  --foreground: 0.235 0.006 165;
+
+  --card: 1 0 0;
+  --card-foreground: 0.235 0.006 165;
+  --popover: 1 0 0;
+  --popover-foreground: 0.235 0.006 165;
+
+  --muted: 0.966 0.004 95;
+  --muted-foreground: 0.522 0.011 165; /* clears 4.5:1 on ivory bg */
+
+  --subtle: 0.972 0.004 120;           /* faint hover fills / zebra rows */
+  --subtle-foreground: 0.30 0.008 165;
+
+  /* Accent — clinical teal (single brand hue) */
+  --primary: 0.64 0.113 190;
+  --primary-foreground: 0.99 0.01 190;
+  --primary-hover: 0.575 0.10 190;
+
+  --ring: 0.64 0.113 190;
+
+  /* Status */
+  --success: 0.63 0.13 155;
+  --success-foreground: 0.99 0.01 155;
+  --warning: 0.75 0.14 75;
+  --warning-foreground: 0.28 0.05 75;
+  --destructive: 0.585 0.205 25;
+  --destructive-foreground: 0.99 0.01 25;
+  --info: 0.62 0.11 235;
+  --info-foreground: 0.99 0.01 235;
+
+  --border: 0.918 0.004 120;
+  --input: 0.905 0.005 120;
+
+  /* Elevation — light: soft, low-spread, layered on white */
+  --shadow-xs: 0 1px 2px 0 oklch(0.24 0.02 165 / 0.05);
+  --shadow-sm: 0 1px 3px 0 oklch(0.24 0.02 165 / 0.08), 0 1px 2px -1px oklch(0.24 0.02 165 / 0.05);
+  --shadow-md: 0 4px 14px -3px oklch(0.24 0.02 165 / 0.10), 0 2px 6px -2px oklch(0.24 0.02 165 / 0.06);
+  --shadow-lg: 0 14px 36px -10px oklch(0.24 0.02 165 / 0.16), 0 4px 12px -4px oklch(0.24 0.02 165 / 0.08);
+  --shadow-primary: 0 6px 20px -6px oklch(var(--primary) / 0.45);
+
+  /* Motion tokens — mirror src/lib/motion.js */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-moderate: 300ms;
+  --duration-slow: 400ms;
+}
+
+.dark {
+  /* Neutrals — dark. Deep desaturated charcoal-green. Elevation by surface:
+     background → card → popover each a step lighter; near-zero shadow. */
+  --background: 0.172 0.006 175;
+  --foreground: 0.955 0.004 150;
+
+  --card: 0.213 0.006 175;
+  --card-foreground: 0.955 0.004 150;
+  --popover: 0.243 0.007 175;
+  --popover-foreground: 0.955 0.004 150;
+
+  --muted: 0.258 0.007 175;
+  --muted-foreground: 0.715 0.012 160;
+
+  --subtle: 0.238 0.007 175;
+  --subtle-foreground: 0.90 0.005 150;
+
+  --primary: 0.79 0.128 185;           /* lift lightness for dark bg */
+  --primary-foreground: 0.205 0.03 185;
+  --primary-hover: 0.845 0.12 185;
+
+  --ring: 0.79 0.128 185;
+
+  --success: 0.74 0.14 155;
+  --success-foreground: 0.20 0.03 155;
+  --warning: 0.80 0.14 78;
+  --warning-foreground: 0.24 0.05 78;
+  --destructive: 0.66 0.19 25;
+  --destructive-foreground: 0.99 0.01 25;
+  --info: 0.72 0.12 235;
+  --info-foreground: 0.20 0.03 235;
+
+  --border: 0.999 0 0 / 0.09;          /* hairline edge shadows can't draw */
+  --input: 0.999 0 0 / 0.14;
+
+  /* On dark, drop shadows barely read — add a faint top highlight for raised edges. */
+  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.30);
+  --shadow-sm: 0 1px 3px 0 oklch(0 0 0 / 0.40), inset 0 1px 0 0 oklch(1 0 0 / 0.04);
+  --shadow-md: 0 6px 20px -4px oklch(0 0 0 / 0.50), inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+  --shadow-lg: 0 16px 40px -8px oklch(0 0 0 / 0.60), inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+  --shadow-primary: 0 6px 24px -6px oklch(var(--primary) / 0.40);
+}
+
 html,
 body,
 #root {
@@ -9,44 +114,242 @@ body,
   margin: 0;
 }
 
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background-color: #f8fafc;
+@layer base {
+  * {
+    border-color: oklch(var(--border));
+  }
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: oklch(var(--background));
+    color: oklch(var(--foreground));
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Real, visible focus — never the raw browser default. */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px oklch(var(--background)), 0 0 0 4px oklch(var(--ring));
+  }
+  /* Text fields signal focus with their border (and the container's
+     focus-within tint), not a ring — typing shouldn't draw halos. */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    box-shadow: none;
+  }
+  /* Aligned numbers never shimmy. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
 }
 
-/* typing indicator dots */
-.typing-dot {
-  animation: blink 1.4s infinite both;
-}
-.typing-dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing-dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-@keyframes blink {
-  0%,
-  80%,
+/* Skeleton shimmer — transform-only (GPU-composited). */
+@keyframes shimmer {
   100% {
-    opacity: 0.2;
+    transform: translateX(100%);
   }
-  40% {
-    opacity: 1;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(var(--foreground) / 0.06),
+    transparent
+  );
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Thinking indicator: a teal light sweeps through the status text. */
+.thinking-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--muted-foreground)) 0%,
+    oklch(var(--primary)) 45%,
+    oklch(var(--muted-foreground)) 90%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 1.6s linear infinite;
+}
+@keyframes shimmer-text {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thinking-shimmer {
+    animation: none;
+    background: none;
+    color: oklch(var(--muted-foreground));
   }
 }
 
+/* Custom scrollbar — quiet, themed */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(var(--foreground) / 0.18) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: oklch(var(--foreground) / 0.16);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(var(--foreground) / 0.28);
+}
+
+/* Markdown (chat) — a full typographic scale so answers read like a document. */
 .markdown p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.625rem;
+}
+.markdown p:last-child {
+  margin-bottom: 0;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: oklch(var(--foreground));
+  margin: 1.1rem 0 0.45rem;
+}
+.markdown h1 {
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+.markdown h2 {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.markdown h3 {
+  font-size: 1rem;
+}
+.markdown h4 {
+  font-size: 0.9375rem;
+}
+.markdown h1:first-child,
+.markdown h2:first-child,
+.markdown h3:first-child,
+.markdown h4:first-child {
+  margin-top: 0;
 }
 .markdown ul {
   list-style: disc;
   padding-left: 1.25rem;
-  margin: 0.25rem 0;
+  margin: 0.375rem 0 0.625rem;
 }
 .markdown ol {
   list-style: decimal;
   padding-left: 1.25rem;
+  margin: 0.375rem 0 0.625rem;
+}
+.markdown li {
+  margin: 0.2rem 0;
+}
+.markdown li::marker {
+  color: oklch(var(--primary));
 }
 .markdown strong {
   font-weight: 600;
+  color: oklch(var(--foreground));
+}
+.markdown em {
+  font-style: italic;
+}
+.markdown a {
+  color: oklch(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.markdown blockquote {
+  margin: 0.625rem 0;
+  padding: 0.125rem 0 0.125rem 0.875rem;
+  border-left: 3px solid oklch(var(--primary) / 0.45);
+  color: oklch(var(--muted-foreground));
+}
+.markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8125em;
+  background: oklch(var(--muted));
+  border: 1px solid oklch(var(--border));
+  border-radius: 0.375rem;
+  padding: 0.1rem 0.35rem;
+}
+.markdown pre {
+  margin: 0.625rem 0;
+  padding: 0.75rem 1rem;
+  background: oklch(var(--muted));
+  border: 1px solid oklch(var(--border));
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+.markdown pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+.markdown hr {
+  border: none;
+  border-top: 1px solid oklch(var(--border));
+  margin: 0.875rem 0;
+}
+.markdown table {
+  width: 100%;
+  margin: 0.625rem 0;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.markdown th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.4rem 0.625rem;
+  border-bottom: 1px solid oklch(var(--border));
+  background: oklch(var(--muted) / 0.6);
+}
+.markdown td {
+  padding: 0.4rem 0.625rem;
+  border-bottom: 1px solid oklch(var(--border) / 0.6);
+}
+
+/* Reduced motion: kill movement globally as a safety net (JS libs also handle it). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Leaflet popups follow the app theme (default is hardcoded white). */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: oklch(var(--card));
+  color: oklch(var(--card-foreground));
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: oklch(var(--muted-foreground));
 }

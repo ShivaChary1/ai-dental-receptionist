@@ -1,15 +1,28 @@
-const STYLES = {
-  scheduled: "bg-green-100 text-green-700",
-  completed: "bg-blue-100 text-blue-700",
-  cancelled: "bg-red-100 text-red-700",
-  rescheduled: "bg-yellow-100 text-yellow-700",
+import Badge from "./ui/Badge.jsx";
+
+/** Maps a booking/appointment status to a semantic badge tone. */
+const TONE = {
+  scheduled: "success",
+  booked: "success",
+  rescheduled: "warning",
+  completed: "info",
+  no_show: "destructive",
+  cancelled: "destructive",
+  read: "neutral",
+  new: "primary",
+  ok: "success",
+  failed: "destructive",
 };
 
-export default function StatusBadge({ status }) {
-  const cls = STYLES[status] || "bg-slate-100 text-slate-600";
+const LABEL = {
+  no_show: "No-show",
+  completed: "Visited",
+};
+
+export default function StatusBadge({ status, dot = false, className }) {
   return (
-    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium capitalize ${cls}`}>
-      {status}
-    </span>
+    <Badge tone={TONE[status] || "neutral"} dot={dot} className={`capitalize ${className || ""}`}>
+      {LABEL[status] || status}
+    </Badge>
   );
 }

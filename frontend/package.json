@@ -10,10 +10,19 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^12.42.2",
+    "leaflet": "^1.9.4",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^1.22.0",
+    "posthog-js": "^1.396.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^3.0.0",
+    "react-leaflet": "^4.2.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.26.2",
+    "remark-gfm": "^4.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

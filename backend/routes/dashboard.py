@@ -2,12 +2,15 @@
 from datetime import datetime, timedelta
 
 from bson import ObjectId
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 
+from auth.deps import require_admin
 from database import get_db
 from models.appointment import AppointmentUpdate, serialize
 
-router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
+router = APIRouter(
+    prefix="/api/dashboard", tags=["dashboard"], dependencies=[Depends(require_admin)]
+)
 
 
 @router.get("/stats")

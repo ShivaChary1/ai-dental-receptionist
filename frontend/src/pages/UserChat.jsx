@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send } from "lucide-react";
 import api from "../api/axios.js";
-import ChatBubble from "../components/ChatBubble.jsx";
+import ChatBubble, { TypingIndicator } from "../components/ChatBubble.jsx";
+import Button from "../components/ui/Button.jsx";
+import Logo from "../components/ui/Logo.jsx";
+import ThemeToggle from "../components/ui/ThemeToggle.jsx";
+import Badge from "../components/ui/Badge.jsx";
+import { useAuth } from "../auth/AuthContext.jsx";
+import { staggerContainer, listItem } from "../lib/motion.js";
 
-const QUICK_ACTIONS = [
-  "Book Appointment",
-  "Cancel Appointment",
-  "Clinic Timings",
-  "Our Doctors",
-];
+const QUICK_ACTIONS = ["Book Appointment", "Cancel Appointment", "Clinic Timings", "Our Doctors"];
 
 function getSessionId() {
   let id = localStorage.getItem("dental_session_id");
@@ -21,12 +24,14 @@ function getSessionId() {
 }
 
 export default function UserChat() {
+  const { isPatient, user, logout } = useAuth();
   const [sessionId] = useState(getSessionId);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
       content:
-        "Hi! 👋 I'm the **SmileCare AI Receptionist**. I can help you book, reschedule, or cancel appointments, and answer questions about our clinic. How can I help you today?",
+        "Hi! I'm the **SmileDesk AI Receptionist**. I can help you book, reschedule, or cancel " +
+        "appointments, and answer questions about our clinic. How can I help you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -44,18 +49,12 @@ export default function UserChat() {
     setMessages((m) => [...m, { role: "user", content: message }]);
     setLoading(true);
     try {
-      const { data } = await api.post("/api/chat", {
-        session_id: sessionId,
-        message,
-      });
+      const { data } = await api.post("/api/chat", { session_id: sessionId, message });
       setMessages((m) => [...m, { role: "assistant", content: data.reply }]);
     } catch (e) {
       setMessages((m) => [
         ...m,
-        {
-          role: "assistant",
-          content: "Sorry, I couldn't reach the clinic system. Please try again.",
-        },
+        { role: "assistant", content: "Sorry, I couldn't reach the clinic system. Please try again." },
       ]);
     } finally {
       setLoading(false);
@@ -65,68 +64,69 @@ export default function UserChat() {
   const showQuickActions = messages.length <= 1;
 
   return (
-    <div className="h-full flex flex-col max-w-2xl mx-auto bg-white shadow-sm">
-      {/* Header */}
-      <header className="flex items-center gap-3 px-5 py-4 border-b border-slate-100 bg-white">
-        <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
-          🦷
+    <div className="mx-auto flex h-full max-w-2xl flex-col border-x border-border bg-background">
+      <header className="flex items-center gap-3 border-b border-border px-5 py-3">
+        <Logo wordmark subtitle="AI Receptionist" />
+        <Badge tone="success" dot className="ml-1">Online</Badge>
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
+          {isPatient ? (
+            <>
+              <span className="hidden text-xs text-muted-foreground sm:inline">
+                {user?.name || user?.email || user?.phone}
+              </span>
+              <button onClick={logout} className="text-xs text-muted-foreground transition-colors hover:text-primary">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="text-xs text-muted-foreground transition-colors hover:text-primary">
+              Login
+            </Link>
+          )}
         </div>
-        <div className="flex-1">
-          <div className="font-semibold text-slate-800">SmileCare AI Receptionist</div>
-          <div className="flex items-center gap-1.5 text-xs text-green-600">
-            <span className="w-2 h-2 rounded-full bg-green-500 inline-block" /> Online
-          </div>
-        </div>
-        <Link to="/dashboard" className="text-xs text-slate-400 hover:text-primary">
-          Admin →
-        </Link>
       </header>
 
-      {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 bg-slate-50">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4">
         {messages.map((m, i) => (
           <ChatBubble key={i} role={m.role} content={m.content} />
         ))}
-        {loading && (
-          <div className="flex items-center gap-1 ml-10 mb-3">
-            <span className="typing-dot w-2 h-2 bg-slate-400 rounded-full" />
-            <span className="typing-dot w-2 h-2 bg-slate-400 rounded-full" />
-            <span className="typing-dot w-2 h-2 bg-slate-400 rounded-full" />
-          </div>
-        )}
+        <AnimatePresence>{loading && <TypingIndicator />}</AnimatePresence>
       </div>
 
-      {/* Quick actions */}
       {showQuickActions && (
-        <div className="flex flex-wrap gap-2 px-4 pb-2 bg-slate-50">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="flex flex-wrap gap-2 px-4 pb-2"
+        >
           {QUICK_ACTIONS.map((q) => (
-            <button
+            <motion.button
               key={q}
+              variants={listItem}
               onClick={() => send(q)}
-              className="text-sm px-3 py-1.5 rounded-full border border-primary/40 text-primary hover:bg-primary/10"
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:bg-primary/5"
             >
               {q}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
       )}
 
-      {/* Input */}
-      <div className="flex items-center gap-2 p-3 border-t border-slate-100 bg-white">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && send()}
-          placeholder="Type your message…"
-          className="flex-1 border border-slate-200 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40"
-        />
-        <button
-          onClick={() => send()}
-          disabled={loading}
-          className="bg-primary text-white rounded-full px-5 py-2 font-medium disabled:opacity-60"
-        >
-          Send
-        </button>
+      <div className="border-t border-border p-3">
+        <div className="flex items-center gap-2 rounded-xl border border-input bg-card p-1.5 shadow-sm transition-colors focus-within:border-primary">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && send()}
+            placeholder="Type your message…"
+            className="flex-1 bg-transparent px-3 py-1.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+          />
+          <Button size="icon" onClick={() => send()} disabled={loading || !input.trim()} aria-label="Send">
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
     </div>
   );

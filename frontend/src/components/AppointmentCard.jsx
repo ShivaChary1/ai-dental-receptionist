@@ -1,5 +1,7 @@
 import { useState } from "react";
 import StatusBadge from "./StatusBadge.jsx";
+import Button from "./ui/Button.jsx";
+import { Select } from "./ui/Input.jsx";
 
 const STATUSES = ["scheduled", "completed", "cancelled", "rescheduled"];
 
@@ -13,48 +15,38 @@ export default function AppointmentCard({ appt, onUpdate }) {
   };
 
   return (
-    <tr className="border-b border-slate-100 hover:bg-slate-50">
-      <td className="px-3 py-2 font-medium text-slate-800">{appt.patient_name}</td>
-      <td className="px-3 py-2 text-slate-600">{appt.patient_phone}</td>
-      <td className="px-3 py-2 text-slate-600">{appt.doctor_name}</td>
-      <td className="px-3 py-2 text-slate-600">{appt.service_type}</td>
-      <td className="px-3 py-2 text-slate-600 whitespace-nowrap">
+    <tr className="border-b border-border transition-colors last:border-0 hover:bg-muted/40">
+      <td className="px-3 py-2 font-medium text-foreground">{appt.patient_name}</td>
+      <td className="px-3 py-2 text-muted-foreground">{appt.patient_phone}</td>
+      <td className="px-3 py-2 text-foreground">{appt.doctor_name}</td>
+      <td className="px-3 py-2 text-foreground">{appt.service_type}</td>
+      <td className="tabular whitespace-nowrap px-3 py-2 text-foreground">
         {appt.appointment_date} · {appt.time_slot}
       </td>
       <td className="px-3 py-2">
         {editing ? (
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="border rounded px-2 py-1 text-sm"
-          >
+          <Select value={status} onChange={(e) => setStatus(e.target.value)} className="h-8 w-36 text-xs">
             {STATUSES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
+              <option key={s} value={s}>{s}</option>
             ))}
-          </select>
+          </Select>
         ) : (
           <StatusBadge status={appt.status} />
         )}
       </td>
-      <td className="px-3 py-2 text-slate-500 max-w-[160px] truncate" title={appt.notes}>
+      <td className="max-w-[160px] truncate px-3 py-2 text-muted-foreground" title={appt.notes}>
         {appt.notes || "—"}
       </td>
-      <td className="px-3 py-2 whitespace-nowrap">
+      <td className="whitespace-nowrap px-3 py-2">
         {editing ? (
-          <>
-            <button onClick={save} className="text-primary text-sm font-medium mr-2">
-              Save
-            </button>
-            <button onClick={() => setEditing(false)} className="text-slate-400 text-sm">
-              Cancel
-            </button>
-          </>
+          <span className="inline-flex gap-1">
+            <Button size="sm" onClick={save}>Save</Button>
+            <Button size="sm" variant="ghost" onClick={() => setEditing(false)}>Cancel</Button>
+          </span>
         ) : (
-          <button onClick={() => setEditing(true)} className="text-primary text-sm font-medium">
+          <Button size="sm" variant="ghost" onClick={() => setEditing(true)}>
             Change status
-          </button>
+          </Button>
         )}
       </td>
     </tr>

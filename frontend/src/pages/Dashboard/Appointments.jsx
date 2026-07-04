@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import api from "../../api/axios.js";
 import AppointmentCard from "../../components/AppointmentCard.jsx";
+import Button from "../../components/ui/Button.jsx";
+import { Card } from "../../components/ui/Card.jsx";
+import { Input, Select } from "../../components/ui/Input.jsx";
 
 const STATUSES = ["", "scheduled", "completed", "cancelled", "rescheduled"];
 
@@ -28,35 +32,47 @@ export default function Appointments() {
   return (
     <div className="space-y-4">
       {/* Status summary */}
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex flex-wrap gap-3">
         {Object.entries(data.status_counts).map(([s, c]) => (
-          <div key={s} className="bg-white border border-slate-100 rounded-lg px-4 py-2 text-sm shadow-sm">
-            <span className="capitalize text-slate-500">{s}: </span>
-            <span className="font-semibold text-slate-800">{c}</span>
+          <div key={s} className="rounded-lg border border-border bg-card px-4 py-2 text-sm shadow-xs">
+            <span className="capitalize text-muted-foreground">{s}: </span>
+            <span className="tabular font-semibold text-foreground">{c}</span>
           </div>
         ))}
       </div>
 
       {/* Filters */}
-      <div className="flex gap-2 flex-wrap bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
-        <input placeholder="Search name/phone" value={filters.search} onChange={setFilter("search")}
-          className="border rounded-lg px-3 py-1.5 text-sm" />
-        <select value={filters.status} onChange={setFilter("status")} className="border rounded-lg px-3 py-1.5 text-sm">
+      <Card className="flex flex-wrap items-center gap-2 p-3">
+        <div className="w-48">
+          <Input leftIcon={Search} placeholder="Search name / phone" value={filters.search} onChange={setFilter("search")} />
+        </div>
+        <Select value={filters.status} onChange={setFilter("status")} className="w-40">
           {STATUSES.map((s) => <option key={s} value={s}>{s || "All statuses"}</option>)}
-        </select>
-        <input placeholder="Doctor" value={filters.doctor_name} onChange={setFilter("doctor_name")}
-          className="border rounded-lg px-3 py-1.5 text-sm" />
-        <input type="date" value={filters.date_from} onChange={setFilter("date_from")} className="border rounded-lg px-3 py-1.5 text-sm" />
-        <input type="date" value={filters.date_to} onChange={setFilter("date_to")} className="border rounded-lg px-3 py-1.5 text-sm" />
-      </div>
+        </Select>
+        <div className="w-36">
+          <Input placeholder="Doctor" value={filters.doctor_name} onChange={setFilter("doctor_name")} />
+        </div>
+        <div className="w-38">
+          <Input type="date" value={filters.date_from} onChange={setFilter("date_from")} />
+        </div>
+        <div className="w-38">
+          <Input type="date" value={filters.date_to} onChange={setFilter("date_to")} />
+        </div>
+      </Card>
 
       {/* Table */}
-      <div className="bg-white border border-slate-100 rounded-xl shadow-sm overflow-x-auto">
+      <Card className="overflow-x-auto p-0">
         <table className="w-full text-sm">
-          <thead className="text-left text-slate-400 border-b">
+          <thead className="bg-muted/60 text-left text-xs text-muted-foreground">
             <tr>
-              <th className="px-3 py-2">Patient</th><th>Phone</th><th>Doctor</th><th>Service</th>
-              <th>Date & Time</th><th>Status</th><th>Notes</th><th>Actions</th>
+              <th className="px-3 py-3 font-medium">Patient</th>
+              <th className="font-medium">Phone</th>
+              <th className="font-medium">Doctor</th>
+              <th className="font-medium">Service</th>
+              <th className="font-medium">Date & time</th>
+              <th className="font-medium">Status</th>
+              <th className="font-medium">Notes</th>
+              <th className="font-medium">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -64,21 +80,27 @@ export default function Appointments() {
               <AppointmentCard key={a.id} appt={a} onUpdate={update} />
             ))}
             {data.items.length === 0 && (
-              <tr><td colSpan={8} className="text-center py-6 text-slate-400">No appointments found.</td></tr>
+              <tr>
+                <td colSpan={8} className="py-6 text-center text-muted-foreground">
+                  No appointments found.
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
-      </div>
+      </Card>
 
       {/* Pagination */}
-      <div className="flex justify-between items-center text-sm text-slate-500">
-        <span>{data.total} total</span>
-        <div className="flex gap-2">
-          <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}
-            className="px-3 py-1 border rounded-lg disabled:opacity-40">Prev</button>
-          <span className="px-2 py-1">Page {page} / {data.pages || 1}</span>
-          <button disabled={page >= data.pages} onClick={() => setPage((p) => p + 1)}
-            className="px-3 py-1 border rounded-lg disabled:opacity-40">Next</button>
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
+        <span className="tabular">{data.total} total</span>
+        <div className="flex items-center gap-2">
+          <Button variant="secondary" size="sm" leftIcon={ChevronLeft} disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+            Prev
+          </Button>
+          <span className="tabular px-2">Page {page} / {data.pages || 1}</span>
+          <Button variant="secondary" size="sm" rightIcon={ChevronRight} disabled={page >= data.pages} onClick={() => setPage((p) => p + 1)}>
+            Next
+          </Button>
         </div>
       </div>
     </div>
